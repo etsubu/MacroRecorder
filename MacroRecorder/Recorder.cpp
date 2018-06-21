@@ -4,6 +4,7 @@ Recorder::Recorder(MacroCompiler *compiler) {
 	wait = true;
 	active = false;
 	this->compiler = compiler;
+	this->lastAction = 0;
 }
 
 Recorder::~Recorder() {
