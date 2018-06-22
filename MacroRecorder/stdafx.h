@@ -15,9 +15,11 @@
 #include <map>
 #include <fstream>
 #include <windows.h>
+#include <stdexcept>
 #include "Hooks.h"
 #include "Recorder.h"
 #include "MacroCompiler.h"
+#include "Emulator.h"
 
 
 // TODO: reference additional headers your program requires here

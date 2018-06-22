@@ -73,14 +73,13 @@ void Recorder::addAction(unsigned int action, unsigned char type, DWORD key) {
 void Recorder::mouseEvent(unsigned char action) {
 	if (!active)
 		return;
-	std::cout << "lal" << std::endl;
 	addAction(action, TYPE_MOUSE, 0x00);
 }
 
 void Recorder::keyboardEvent(unsigned int action, DWORD key) {
-	if (action + 0x100 == WM_KEYUP && key == VK_F1) {
-		wait = !wait;
-		return;
+	if (key == VK_F1) {
+		if(action + 0x100 == WM_KEYUP)
+			wait = !wait;
 	}
 	if (!active)
 		return;

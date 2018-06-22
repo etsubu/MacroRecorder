@@ -138,6 +138,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Emulator.h" />
     <ClInclude Include="Hooks.h" />
     <ClInclude Include="MacroCompiler.h" />
     <ClInclude Include="Recorder.h" />
@@ -145,6 +146,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Emulator.cpp" />
     <ClCompile Include="Hooks.cpp" />
     <ClCompile Include="MacroCompiler.cpp" />
     <ClCompile Include="MacroRecorder.cpp" />

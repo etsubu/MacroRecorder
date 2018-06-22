@@ -18,6 +18,11 @@ public:
 	bool decompileMacro(std::vector<Action*> &actionList, std::vector<std::string> &textRepresentation);
 	bool compileMacro(std::vector<std::string> &textRepresentation, std::vector<Action*> &actionList);
 private:
+	void split(std::string line, std::vector<std::string> &words, char delimiter);
+	Action *decodeMouseAction(std::vector<std::string> words);
+	Action *decodeKeyboardAction(std::vector<std::string> words);
 	std::map<unsigned char, std::string> keyboardActionToText;
 	std::map<unsigned char, std::string> mouseActionToText;
+	std::map<std::string, unsigned char> textToKeyboardAction;
+	std::map<std::string, unsigned char> textToMouseAction;
 };
