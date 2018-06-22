@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 			return 1;
 		if (compiler.compileMacro(lines, actionList)) {
 			std::cout << "Starting playback" << std::endl;
-			//emul.playMacro(actionList);
+			emul.playMacro(actionList);
 		}
 		else {
 			std::cout << "Failed to compile macro file!" << std::endl;

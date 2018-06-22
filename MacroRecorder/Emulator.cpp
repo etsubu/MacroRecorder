@@ -9,19 +9,20 @@ Emulator::~Emulator() {
 }
 
 int Emulator::doMouseAction(Action *action) {
-	//if (!SetCursorPos(action->x, action->y))
-	//	reiurn 0;
-	INPUT input[2] = { 0 };
+	if (!SetCursorPos(action->x, action->y))
+		return 0;
+	INPUT input[1] = { 0 };
 
-	input[0].type = INPUT_MOUSE;
+	/*input[0].type = INPUT_MOUSE;
 	input[0].mi.dx = action->x; // desired X coordinate
 	input[0].mi.dy = action->y; // desired Y coordinate
 	input[0].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE;
+	*/
+	input[0].type = INPUT_MOUSE;
+	std::cout << (DWORD)action->action << std::endl;
+	input[0].mi.dwFlags = action->action;
 
-	input[1].type = INPUT_MOUSE;
-	input[1].mi.dwFlags = action->action;
-
-	SendInput(2, input, sizeof(INPUT));
+	SendInput(1, input, sizeof(INPUT));
 	return 1;
 }
 
@@ -45,14 +46,19 @@ int Emulator::doKeyboardAction(Action *action) {
 
 int Emulator::playMacro(const std::vector<Action*> &actionList) {
 	for (Action *action:actionList) {
+		std::cout << "action" << std::endl;
 		switch (action->type) {
 		case TYPE_SLEEP:
 			Sleep(action->key);
 			break;
 		case TYPE_MOUSE:
-			return doMouseAction(action);
+			if (!doMouseAction(action))
+				return 0;
+			break;
 		case TYPE_KEYBOARD:
-			return doKeyboardAction(action);
+			if (!doKeyboardAction(action))
+				return 0;
+			break;
 		default:
 			return 0;
 		}
